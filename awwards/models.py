@@ -19,7 +19,7 @@ def update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 class Project(models.Model):
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
     title = models.CharField(max_length=150)
     image = CloudinaryField('images')
     profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
