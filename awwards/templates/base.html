@@ -1,0 +1,50 @@
+{% load bootstrap3 %}
+{% load static%}
+{% load cloudinary %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    {% if title %}
+    <title>Instaclone - {{title}}</title>
+    {% else %}
+    <title> Instaclone</title>
+    {% endif %}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
+    <style>
+        .navbar {
+            background-color: black;
+            border: none;
+            border-radius: 0%;
+        }
+
+        .nav-item>.nav-link {
+            color: red;
+        }
+    </style>
+</head>
+<style>
+.navbar{
+    background-color: rgb(5, 5, 48);
+}
+</style>
+
+<body>
+    {% block content %}
+
+    {%endblock%}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+
+</html

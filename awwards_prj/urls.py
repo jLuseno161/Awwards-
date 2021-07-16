@@ -29,10 +29,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views 
 from django.urls import path
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('awwards.urls')),  
+    path(r'accounts/', include('registration.backends.simple.urls')),
+    path(r'logout/', views.LogoutView.as_view(), {"next_page": 'accounts/login'}), 
+
+  
 ]
