@@ -27,3 +27,24 @@ class Project(models.Model):
     description = models.TextField(max_length=300, blank=True)  
     date = models.DateTimeField(auto_now_add=True)
      # rating = models.ManyToManyField(User, related_name='votes', blank=True)
+
+class Rates(models.Model):
+    RATE_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+    user = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
+    project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
+    design = models.IntegerField(choices=RATE_CHOICES,default=0,blank=False)
+    usability = models.IntegerField(choices=RATE_CHOICES,default=0,blank=False)
+    content = models.IntegerField(choices=RATE_CHOICES,default=0,blank=False)
+    average =  models.DecimalField(default=1,blank=False,decimal_places=2,max_digits=40)
+    date = models.DateTimeField(auto_now_add=True)
