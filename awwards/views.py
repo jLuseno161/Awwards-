@@ -51,11 +51,9 @@ def post_project(request):
 			new_project = form.save(commit=False)
 			new_project.user = current_user
 			new_project.save()
-            # messages.success(request, "Image uploaded!")
 			return redirect('index')
 	else:
 			form = ProjectForm()
-            # context= {"form":form}
 	return render(request, 'projects.html',{"form":form})
     
 class ProfileList(APIView):

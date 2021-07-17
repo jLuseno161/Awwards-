@@ -3,6 +3,10 @@
 {% load bootstrap3 %}
 {% block content %}
 <style>
+    .navbar {
+        background-color: rgb(5, 5, 48);
+    }
+
     .newpost {
         border: none;
     }
@@ -37,6 +41,8 @@
                 <div class="col-md-8">
                     <h3 style="font-weight: 700;"><a href="{% url 'profile' %}">{{user.username}}</a></h3>
                     <b>{{user.profile.bio}}</b>
+                    <a href="{% url 'post_prj' %}"> <input type="button" class="btn btn-info" value="Post Project">
+                    </a>
                 </div>
             </div>
         </div>
@@ -55,4 +61,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

@@ -18,23 +18,10 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock %}
 
-    <style>
-        .navbar {
-            background-color: black;
-            border: none;
-            border-radius: 0%;
-        }
-
-        .nav-item>.nav-link {
-            color: red;
-        }
-    </style>
+  
 </head>
-<style>
-.navbar{
-    background-color: rgb(5, 5, 48);
-}
-</style>
+{% include "navbar.html" %}
+
 
 <body>
     {% block content %}
