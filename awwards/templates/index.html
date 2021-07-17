@@ -5,13 +5,36 @@
 <style>
 </style>
 <div class="container">
-    <h1 class="text-center">WELCOME TO PJWARDS</h1>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <a href="{% url 'post_prj' %}"> <input type="button" class="btn btn-info " value="Post Project">
-            </a>
+    <div id="home">
+        <div id="overlay" class="row">
+            <div class="intro col-md-12 text-center ">
+                <h1 id="welcome_text">Welcome to La PJwards</h1>
+                <hr>
+                <h3 id="description">Home of Awwards</h3>
+                <hr>
+                <a href="{% url 'post_prj' %}"> <input type="button" class="btn btn-info " value="Post Project"></a>
+
+            </div>
         </div>
     </div>
+    <h1 class='text-center' style="font-style: italic;">My Projects</h1>
+    <div class="container">
+        <hr />
+        {% for project in projects%}
+        <div class="col-lg-4">
+                <img src="{{project.image.url}}" class="img-responsive" alt="{{image.name}}" style="width:100%;width:100%">
+                <h5 class="text-left">{{project.title}}</h5>
+                <div class="row">
+                    <div class="col-md-6"> By: {{project.user.username}}</div>
+                    <div class="col-md-6">{{project.date}}</div>
+                </div>         
+        </div>
+        {%endfor%}
+    </div>
+    
+    <footer class="footer">
+        <p class="text-center">© Joy Kolia 2021. All Rights Reserved</p>
+    </footer>
 </div>
 
 {% endblock %}

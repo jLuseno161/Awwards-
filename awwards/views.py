@@ -19,7 +19,8 @@ from rest_framework import status
 @login_required(login_url='/accounts/login/')
 def index(request):
     profile = Profile.objects.all()
-    return render(request,'index.html',{"profile":profile})
+    projects = Project.objects.all()
+    return render(request,'index.html',{"profile":profile,"projects":projects})
     
 def signup(request):
     print('here')
@@ -55,7 +56,15 @@ def post_project(request):
 	else:
 			form = ProjectForm()
 	return render(request, 'projects.html',{"form":form})
-    
+
+
+# @login_required(login_url='/accounts/login')
+# def show_projects(request,id):
+#     project = Project.objects.get(id = id)
+
+#     return render(request, 'project_details.html',{"project":project}) 
+
+
 class ProfileList(APIView):
     """
     List all snippets, or create a new snippet.
