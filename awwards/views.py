@@ -6,6 +6,15 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 
+#api urls
+
+from .models import Profile,Project
+from .serializers import ProfileSerializer,ProjectSerializer
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 
 @login_required(login_url='/accounts/login/')
 def index(request):
@@ -33,8 +42,21 @@ def profile(request):
     projects= Project.objects.filter(profile=current_user.id).all
     return render(request, 'registration/profile.html',{"projects":projects} )
 
-def profileEndpoint(request):
-    pass
+class ProfileList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
 
-def projectsEndpoint(request):
-    pass
+
+class ProjectList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        projects = Project.objects.all()
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data)

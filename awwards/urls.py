@@ -8,6 +8,6 @@ urlpatterns = [
 
     #api endpoints
 
-    path('api/v1/profile',views.profileEndpoint,name='profileEndpoint'),
-    path('api/v1/projects',views.projectsEndpoint,name='projectsEndpoint')
+    path('api/v1/profile',views.ProfileList.as_view(),name='profileEndpoint'),
+    path('api/v1/projects',views.ProjectList.as_view(),name='projectsEndpoint')
 ]
