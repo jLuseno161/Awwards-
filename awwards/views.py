@@ -1,5 +1,5 @@
 from awwards.models import Profile, Project
-from awwards.forms import SignUpForm
+from awwards.forms import ProjectForm, SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
