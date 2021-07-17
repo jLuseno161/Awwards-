@@ -2,14 +2,14 @@ from awwards.models import Profile, Project
 from awwards.forms import ProjectForm, SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.http.response import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 
-#api urls
+# api urls
 
-from .models import Profile,Project
-from .serializers import ProfileSerializer,ProjectSerializer
+from .models import Profile, Project
+from .serializers import ProfileSerializer, ProjectSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -20,22 +20,30 @@ from rest_framework import status
 def index(request):
     profile = Profile.objects.all()
     projects = Project.objects.all()
-    return render(request,'index.html',{"profile":profile,"projects":projects})
-    
+    return render(request, 'index.html', {"profile": profile, "projects": projects})
+
+
 def signup(request):
     print('here')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+            # form.save()
+            # username = form.cleaned_data.get('username')
+            # raw_password = form.cleaned_data.get('password1')
+            # user = authenticate(username=username, password=raw_password)
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.birth_date = form.cleaned_data.get('full_name')
+            user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=user.username, password=raw_password)
+
             login(request, user)
             return redirect('login')
     else:
         form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 @login_required(login_url='/accounts/login/')    
 def profile(request):
