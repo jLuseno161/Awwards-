@@ -22,7 +22,7 @@ class Project(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
     title = models.CharField(max_length=150)
     image = CloudinaryField('images')
-    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete = models.CASCADE,null=True)
     url = models.URLField(blank=True)
     description = models.TextField(max_length=300, blank=True)  
     date = models.DateTimeField(auto_now_add=True)

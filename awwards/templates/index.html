@@ -3,61 +3,13 @@
 {% load bootstrap3 %}
 {% block content %}
 <style>
-    .navbar {
-        background-color: rgb(5, 5, 48);
-    }
-
-    .newpost {
-        border: none;
-    }
-
-    .profile_pic {
-        width: 130px;
-        height: 130px;
-        overflow: hidden;
-        border-radius: 50%;
-        background-color: gray;
-    }
-
-    .profile_pic img,
-    .imag img {
-        width: 100%;
-        height: 100%;
-    }
 </style>
 <div class="container">
-    <div class="col-md-4">
-        <div class="showprofile">
-            <h1 style="font-weight: 700;">Profile</h1>
-            <hr>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="img">
-                        <div class="profile_pic" class="rounded-circle">
-                            <img src="{{user.profile.profile_pic.url }}" alt="profile_photo">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <h3 style="font-weight: 700;"><a href="{% url 'profile' %}">{{user.username}}</a></h3>
-                    <b>{{user.profile.bio}}</b>
-                    <a href="{% url 'post_prj' %}"> <input type="button" class="btn btn-info" value="Post Project">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div>
-            <div class="row">
-                <div class="col-md-6">
-                    <b style="font-size:10pt;">Following </b>
-                </div>
-                <div class="col-md-6">
-                    <b style="font-size:10pt;">Followers </b>
-
-                </div>
-            </div>
-            <hr>
+    <h1 class="text-center">WELCOME TO PJWARDS</h1>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="{% url 'post_prj' %}"> <input type="button" class="btn btn-info " value="Post Project">
+            </a>
         </div>
     </div>
 </div>
