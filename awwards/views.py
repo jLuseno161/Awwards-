@@ -42,6 +42,22 @@ def profile(request):
     projects= Project.objects.filter(profile=current_user.id).all
     return render(request, 'registration/profile.html',{"projects":projects} )
 
+@login_required(login_url='/accounts/login')
+def post_project(request):
+	current_user = request.user
+	if request.method == 'POST':
+		form = ProjectForm(request.POST,request.FILES)
+		if form.is_valid():
+			new_project = form.save(commit=False)
+			new_project.user = current_user
+			new_project.save()
+            # messages.success(request, "Image uploaded!")
+			return redirect('index')
+	else:
+			form = ProjectForm()
+            # context= {"form":form}
+	return render(request, 'projects.html',{"form":form})
+    
 class ProfileList(APIView):
     """
     List all snippets, or create a new snippet.
