@@ -13,6 +13,7 @@ def index(request):
     return render(request,'index.html',{"profile":profile})
     
 def signup(request):
+    print('here')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -25,3 +26,15 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+@login_required(login_url='/accounts/login/')    
+def profile(request):
+    current_user= request.user
+    projects= Project.objects.filter(profile=current_user.id).all
+    return render(request, 'registration/profile.html',{"projects":projects} )
+
+def profileEndpoint(request):
+    pass
+
+def projectsEndpoint(request):
+    pass
