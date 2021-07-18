@@ -29,7 +29,7 @@
         }
 
         body {
-            background: #eeeeee;
+            /* background: #eeeeee; */
             font-family: 'Varela Round', sans-serif;
         }
 
@@ -287,8 +287,7 @@
                         {{user.username}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'profile' %}"><i class="fa fa-user-o"></i> Profile</a></li>
-                        <li><a href="#"><i class="fa fa-calendar-o"></i> Calendar</a></li>
-                        <li><a href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa fa-sliders"></i> Account settings</a></li>
                         <li class="divider"></li>
                         {% if user.is_authenticated %}
                         <li><a href="/logout"><i class="material-icons">&#xE8AC;</i> Signout</a></li>

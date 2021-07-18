@@ -2,11 +2,16 @@
 {%block content%}
 <style>
     .profile_pic {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
         overflow: hidden;
         border-radius: 50%;
         background-color: gray;
+        margin: 10px auto
+    }
+
+    .view-profile {
+        padding-left: 25%;
     }
 
     .profile_pic img,
@@ -15,29 +20,34 @@
         height: 100%;
     }
 </style>
-<div class="container" style="padding: 5%;">
-    <div class="col-sm-5">
+<div class="container">
+    <div class="col-md-4">
         <div class="profile_pic" class="rounded-circle">
-            <img src="{{user.profile.profile_pic.url }}" alt="profile_photo">
+            <img src="{{user.profile.profile_pic.url }}" alt="">
         </div>
     </div>
-    <div class="media-body view-profile">
-        <div class="row">
-            <div class="col-md-12">
-                <h3><span style="padding-right: 3%;">{{user.username}} </span><a href="{% url 'update_profile' user.id %}" target="_blank"><button
-                            class="btn btn-warning btn-">Edit Profile</button></a>
-                </h3>
-            </div>
-        </div>
-        <div class="row" style="margin-top:3%">
-            <div class="col-md-12">
-                <p id="bio">{{user.profile.bio}}</p>
-            </div>
-        </div>
-        <div class="row" style="margin-top:2%">
-            
-            <div class="col-md-12">
-                <p><span style="padding-right: 3%;">Following </span>Followers</p>
+    <div class="col-md-8 ">
+        <div class="view-profile ">
+            <div class="media-body ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3><span style="padding-right: 3%;">{{user.username}} </span><a
+                                href="{% url 'update_profile' user.id %}" target="_blank"><button
+                                    class="btn btn-warning btn-">Edit Profile</button></a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:3%">
+                    <div class="col-md-12">
+                        <p id="bio">{{user.profile.bio}}</p>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:2%">
+
+                    <div class="col-md-12">
+                        <p><span style="padding-right: 3%;">Following </span>Followers</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
