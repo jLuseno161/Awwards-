@@ -55,5 +55,18 @@
 
 <div class="container">
     <hr>
+    {% for project in projects%}
+    <div class="col-lg-4">
+        <a href="{% url 'viewProject' id=project.id %}">
+            <img src="{{project.image.url}}" class="img-responsive" alt="{{image.name}}" style="width:100%;width:100%">
+        </a>
+        <h5 class="text-left">{{project.title}}</h5>
+        <div class="row">
+            <div class="col-md-6"> By: {{project.user.username}}</div>
+            <div class="col-md-6">{{project.date}}</div>
+        </div>
+    </div>
+    {%endfor%}
+
 </div>
 {%endblock content%}

@@ -17,7 +17,6 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-@login_required(login_url='/accounts/login/')
 def index(request):
     profile = Profile.objects.all()
     projects = Project.objects.all()
@@ -49,7 +48,7 @@ def signup(request):
 @login_required(login_url='/accounts/login/')    
 def profile(request):
     current_user= request.user
-    projects= Project.objects.filter(profile=current_user.id).all
+    projects= Project.objects.filter(user=current_user.id).all
     return render(request, 'registration/profile.html',{"projects":projects} )
 
 @login_required(login_url='/accounts/login/')    
@@ -80,13 +79,10 @@ def post_project(request):
 			form = ProjectForm()
 	return render(request, 'projects.html',{"form":form})
 
-
 @login_required(login_url='/accounts/login')
 def view_project(request,id):
     project = Project.objects.get(id = id)
     reviews = Rates.objects.order_by('-date')
-
-
     return render(request, 'viewProject.html',{"project":project, "reviews":reviews}) 
 
 
