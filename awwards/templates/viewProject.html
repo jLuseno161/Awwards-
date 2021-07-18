@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+<style>
+    .panel {
+        border: none;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default" style="margin-top:5%">
+                <img class="card-img-top mb-10 img-responsive" src="{{project.image.url}}"
+                    style="height:auto;width:100%">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p> <span style="font-weight: 700;">Title : </span> {{project.title}} </p>
+                            <p>
+                                <span style="font-weight: 700;">Description : </span> {{ project.description  }}
+                            </p>
+                            <p><a href="{{project.url}}" class="text-right" style="text-decoration: none;">
+                                    Go live <img src="https://img.icons8.com/color/48/000000/circled-up-right--v1.png"
+                                        style="width:25px;height:auto" />
+                                </a></p>
+                            <br>
+                            <a href="/" class="btn btn-info btn-block" style="margin-top:4px;">Rate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    {% endblock %}
