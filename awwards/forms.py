@@ -1,7 +1,8 @@
-from awwards.models import Profile, Project
+from awwards.models import Profile, Project, Rates
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+
 
 class SignUpForm(UserCreationForm):
     full_name = forms.CharField(max_length=50, required=False)
@@ -9,23 +10,31 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'username','email', 'password1', 'password2', )
+        fields = ('full_name', 'username', 'email', 'password1', 'password2', )
+
 
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        exclude = ['user','profile','date']
+        exclude = ['user', 'profile', 'date']
+
 
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254, help_text='Required.')
+
     class Meta:
         model = User
         fields = ('username', 'email')
+
 
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         # fields = ['bio','profile_pic']
-        fields = ['contact','bio']
+        fields = ['contact', 'bio']
 
 
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Rates
+        fields = ['design', 'usability', 'content']
