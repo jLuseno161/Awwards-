@@ -1,5 +1,6 @@
 from awwards.models import Profile, Project
-from awwards.forms import ProjectForm, SignUpForm
+from django.contrib.auth.models import User
+from awwards.forms import ProjectForm, SignUpForm, UpdateProfileForm, UpdateUserForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect

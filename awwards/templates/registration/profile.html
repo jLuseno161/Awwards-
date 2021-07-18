@@ -24,22 +24,20 @@
     <div class="media-body view-profile">
         <div class="row">
             <div class="col-md-12">
-                <h2>{{user.username}} <a href="/" target="_blank"><button class="btn">Edit Profile</button></a> <a
-                        href="/"><button class="btn">Settings</button></a>
-                </h2>
+                <h3><span style="padding-right: 3%;">{{user.username}} </span><a href="{% url 'update_profile' user.id %}" target="_blank"><button
+                            class="btn btn-warning btn-">Edit Profile</button></a>
+                </h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p>Following</p>
-            </div>
-            <div class="col-md-3">
-                <p>Followers</p>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top:3%">
             <div class="col-md-12">
                 <p id="bio">{{user.profile.bio}}</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top:2%">
+            
+            <div class="col-md-12">
+                <p><span style="padding-right: 3%;">Following </span>Followers</p>
             </div>
         </div>
     </div>
