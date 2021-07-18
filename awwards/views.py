@@ -8,7 +8,7 @@ from django.contrib.auth import login, authenticate
 
 # api urls
 
-from .models import Profile, Project
+from .models import Profile, Project, Rates
 from .serializers import ProfileSerializer, ProjectSerializer
 from django.http import Http404
 from rest_framework.views import APIView
@@ -57,20 +57,22 @@ def post_project(request):
 	if request.method == 'POST':
 		form = ProjectForm(request.POST,request.FILES)
 		if form.is_valid():
-			new_project = form.save(commit=False)
-			new_project.user = current_user
-			new_project.save()
+			post_project = form.save(commit=False)
+			post_project.user = current_user
+			post_project.save()
 			return redirect('index')
 	else:
 			form = ProjectForm()
 	return render(request, 'projects.html',{"form":form})
 
 
-# @login_required(login_url='/accounts/login')
-# def show_projects(request,id):
-#     project = Project.objects.get(id = id)
+@login_required(login_url='/accounts/login')
+def view_project(request,id):
+    project = Project.objects.get(id = id)
+    reviews = Rates.objects.order_by('-date')
 
-#     return render(request, 'project_details.html',{"project":project}) 
+
+    return render(request, 'viewProject.html',{"project":project, "reviews":reviews}) 
 
 
 class ProfileList(APIView):
