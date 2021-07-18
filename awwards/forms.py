@@ -10,7 +10,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'username', 'email', 'password1', 'password2', )
+        fields = ('username', 'email', 'password1', 'password2', )
 
 
 class ProjectForm(forms.ModelForm):
@@ -31,7 +31,7 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         # fields = ['bio','profile_pic']
-        fields = ['contact', 'bio']
+        fields = ['contact','profile_pic', 'bio']
 
 
 class RatingsForm(forms.ModelForm):

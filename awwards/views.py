@@ -59,7 +59,7 @@ def update_profile(request, id):
 
     obj = get_object_or_404(Profile, user_id=id)
     obj2 = get_object_or_404(User, id=id)
-    form = UpdateProfileForm(request.POST or None, instance=obj)
+    form = UpdateProfileForm(request.POST or None, request.FILES, instance=obj)
     form2 = UpdateUserForm(request.POST or None, instance=obj2)
     if form.is_valid() and form2.is_valid():
         form.save()
@@ -134,7 +134,7 @@ def view_project(request, id):
         'form': form,
         'rating_status': rating_status,
         'reviews': ratings,
-        
+
     }
     return render(request, 'viewProject.html', params)
 
