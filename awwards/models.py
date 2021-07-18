@@ -26,6 +26,12 @@ class Project(models.Model):
     url = models.URLField(blank=True)
     description = models.TextField(max_length=300, blank=True)  
     date = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def project_by_id(cls,id):
+        project = Project.objects.filter(id =id)
+        return project
+
      # rating = models.ManyToManyField(User, related_name='votes', blank=True)
 
 class Rates(models.Model):

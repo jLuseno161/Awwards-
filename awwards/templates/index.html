@@ -48,7 +48,8 @@
         <hr />
         {% for project in projects%}
         <div class="col-lg-3">
-            <div style="background-color: rgb(250, 246, 246);box-sizing: border-box; margin-top:5%;box-shadow: 0vh 0vh 1vh gainsboro;">
+            <div
+                style="background-color: rgb(250, 246, 246);box-sizing: border-box; margin-top:5%;box-shadow: 0vh 0vh 1vh gainsboro;">
                 <div class="fadeoverlay">
                     <a href="{% url 'viewProject' id=project.id %}">
                         <img src="{{project.image.url}}" class="img-responsive" alt="{{image.name}}"
@@ -59,8 +60,9 @@
                 </div>
                 <div class="row" style="padding-top: 5%">
                     <div class="col-md-12">
-                        <p><a href="{{project.url}}"
-                                class="text-right" style="text-decoration: none;"> {{project.title}} <img src="https://img.icons8.com/color/48/000000/circled-up-right--v1.png"
+                        <p><a href="{{project.url}}" class="text-right" style="text-decoration: none;">
+                                {{project.title}} <img
+                                    src="https://img.icons8.com/color/48/000000/circled-up-right--v1.png"
                                     style="width:15px;height:auto" />
                             </a></p>
                     </div>
@@ -73,7 +75,20 @@
         </div>
         {%endfor%}
     </div>
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h3 class="D-block mx-auto">Rating Scores</h3>
+            {% for review in reviews %}
+            <div class="col-lg-3">
 
+                <h1>Content{{review.content}}</h1>
+                <p>Usability{{review.usability}}</p>
+            </div>
+
+            {%endfor%}
+
+        </div>
+    </div>
 </div>
 <footer class="footer">
     <p class="text-center">© Joy Kolia 2021. All Rights Reserved</p>

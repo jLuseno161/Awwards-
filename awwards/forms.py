@@ -38,3 +38,5 @@ class RatingsForm(forms.ModelForm):
     class Meta:
         model = Rates
         fields = ['design', 'usability', 'content']
+        # exclude = ['user','project','average']
+

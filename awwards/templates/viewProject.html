@@ -8,8 +8,9 @@
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-6">
             <div class="panel panel-default" style="margin-top:5%">
                 <img class="card-img-top mb-10 img-responsive" src="{{project.image.url}}"
                     style="height:auto;width:100%">
@@ -25,12 +26,79 @@
                                         style="width:25px;height:auto" />
                                 </a></p>
                             <br>
-                            <a href="/" class="btn btn-info btn-block" style="margin-top:4px;">Rate</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <h2 class="mt-4">Rate</h2>
+            {% if rating_status %}
+            <h5>You have already done your review</h5>
+            {% else %}
+            {% if user.is_authenticated %}
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <a href="/" class="btn btn-info btn-block" style="margin-top:4px;">Rate</a>
+                <button class="btn btn-sm btn-info" value="review" type="submit">Rat</button>
+
+
+            </form>
+            {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-md-1"></div>
     </div>
-    {% endblock %}
+</div>
+<div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <h3 class="text-center">Ratings Scores</h3>
+        <div class="col-md-12">
+            <a class="col-md-1">
+            </a>
+            <a class="col-md-2">
+                <span class="sc">Average</span>
+            </a>
+            <a class="col-md-2">
+                <span class="sc">Design</span>
+            </a>
+            <a class="col-md-2" id="u">
+                <span class="sc">Usability</span>
+            </a>
+            <a class="col-md-2" id="c">
+                <span class="sc">Content</span>
+            </a>
+            <a class="col-md-2" id="c">
+                <span class="sc">Rated by:</span>
+            </a>
+            <a class="col-md-1">
+            </a>
+        </div>
+        {% for reviews in reviews %}
+        <div class="col-md-12">
+            {% if project.id == reviews.project.id %}
+            <a class="col-md-2">
+                <h5>{{reviews.content}}</h5>
+            </a>
+            <a class="col-md-2">
+                <h5>{{reviews.usability}}</h5>
+            </a>
+            <a class="col-md-2" id="u">
+                <h5>{{reviews.design}}</h5>
+            </a>
+            <a class="col-md-2" id="c">
+                <h5>{{ reviews.average }}</h5>
+            </a>
+            <a class="col-md-2" id="c">
+                <h5>{{ reviews.user.username }}</h5>
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}
