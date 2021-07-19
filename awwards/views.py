@@ -56,7 +56,6 @@ def profile(request):
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request, id):
-
     obj = get_object_or_404(Profile, user_id=id)
     obj2 = get_object_or_404(User, id=id)
     form = UpdateProfileForm(request.POST or None, request.FILES, instance=obj)
@@ -94,37 +93,28 @@ def project(request, id):
 @login_required(login_url='/accounts/login')
 def view_project(request, id):
     project = Project.objects.get(id=id)
-    # ratings = Rates.objects.filter(user=request.user, project=project).first()
+    rate = Rates.objects.filter(user=request.user, project=project).first()
     ratings = Rates.objects.all()
     rating_status = None
-    if ratings is None:
+    if rate is None:
         rating_status = False
     else:
         rating_status = True
+    current_user = request.user
     if request.method == 'POST':
         form = RatingsForm(request.POST)
         if form.is_valid():
-            review = form.save(commit=False)
-            review.user = request.user
+            design = form.cleaned_data['design']
+            usability = form.cleaned_data['usability']
+            content = form.cleaned_data['content']
+            review = Rates()
             review.project = project
-            review.save()
-            post_ratings = Rates.objects.filter(project=project)
-
-            design_ratings = [d.design for d in post_ratings]
-            design_average = sum(design_ratings) / len(design_ratings)
-
-            usability_ratings = [us.usability for us in post_ratings]
-            usability_average = sum(usability_ratings) / len(usability_ratings)
-
-            content_ratings = [content.content for content in post_ratings]
-            content_average = sum(content_ratings) / len(content_ratings)
-
-            score = (design_average + usability_average + content_average) / 3
-            print(score)
-            review.design = round(design_average, 2)
-            review.usability = round(usability_average, 2)
-            review.content = round(content_average, 2)
-            review.average = round(score, 2)
+            review.user = current_user
+            review.design = design
+            review.usability = usability
+            review.content = content
+            review.average = (
+                review.design + review.usability + review.content)/3
             review.save()
             return HttpResponseRedirect(reverse('viewProject', args=(project.id,)))
     else:
@@ -134,6 +124,7 @@ def view_project(request, id):
         'form': form,
         'rating_status': rating_status,
         'reviews': ratings,
+        'ratings': rate
 
     }
     return render(request, 'viewProject.html', params)
