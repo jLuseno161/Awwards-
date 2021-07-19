@@ -25,8 +25,8 @@ A Django application that allows users to post projects they have created and ge
 
 ## API Endpoints
 
-[Profiles Endpoints](https://pjwards.herokuapp.com/api/v1/profile)
-[Projects Endpoints](https://pjwards.herokuapp.com/api/v1/projects)
+* [Profiles Endpoints](https://pjwards.herokuapp.com/api/v1/profile)
+* [Projects Endpoints](https://pjwards.herokuapp.com/api/v1/projects)
 
 ## Prerequisites
 
