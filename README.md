@@ -10,7 +10,7 @@ A Django application that allows users to post projects they have created and ge
 
 ## Live Link
 
-[View Site](https://.herokuapp.com)
+[View Site](https://pjwards.herokuapp.com/)
 
 ## User Story
 
