@@ -13,7 +13,6 @@ urlpatterns = [
     path('project_info/(?P<id>\d+)', views.view_project, name='viewProject'),
 
     #api endpoints
-
     path('api/v1/profile',views.ProfileList.as_view(),name='profileEndpoint'),
     path('api/v1/projects',views.ProjectList.as_view(),name='projectsEndpoint')
 ]

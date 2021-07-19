@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% if title %}
     <title>PJwards - {{title}}</title>
@@ -16,12 +17,12 @@
 
     {% block styles %}
     {% bootstrap_css %}
+
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    {% endblock %}
     <style>
         footer {
-            background-color:  rgb(5, 5, 48);
+            background-color: rgb(5, 5, 48);
             box-sizing: border-box;
             color: white;
             padding: 20px;
@@ -30,16 +31,14 @@
             width: 100%;
         }
     </style>
-
+    {% endblock %}
 
 </head>
+
 {% include "navbar.html" %}
 
-
 <body>
-    {% block content %}
-
-    {%endblock%}
+    {% block content %} {%endblock%}
 
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
