@@ -15,7 +15,6 @@ A Django application that allows users to post projects they have created and ge
 ## User Story
 
 * User can signup & signin to the application
-* User can post projects they have worked on
 * User can rate on projects posted by other users
 * Current user is able to edit there profile
 * Current user is able to view their profile page with the projects they posted
