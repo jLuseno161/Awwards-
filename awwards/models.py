@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from cloudinary.models import CloudinaryField
-from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
@@ -12,6 +11,8 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     contact = models.CharField(max_length=30, blank=True)
     # email_confirmed = models.BooleanField(default=False)
+    def __str__(self):
+        return self.user.username
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
@@ -79,3 +80,6 @@ class Rates(models.Model):
     average = models.DecimalField(
         default=1, blank=False, decimal_places=2, max_digits=40)
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.project.title
