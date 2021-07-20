@@ -6,7 +6,6 @@
         height: 130px;
         overflow: hidden;
         border-radius: 50%;
-        background-color: gray;
         margin: 10px auto
     }
 
@@ -50,8 +49,9 @@
 <div class="container">
     <div class="col-md-4">
         <div class="profile_pic" class="rounded-circle">
-            <img src="{{user.profile.profile_pic.url }}" alt="">
-        </div>
+            <img src="{{user.profile.profile_pic.url }}" class="avatar" alt="Avatar"
+                onerror="this.src='https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png'"
+                style="color:white"> </div>
     </div>
     <div class="col-md-8 ">
         <div class="view-profile ">
